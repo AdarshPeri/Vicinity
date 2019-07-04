@@ -38,7 +38,7 @@ class Headlines extends Component{
 		return(
 			<div>
 				<div className="flex items-center justify-end pa2">
-					<SearchBox searchChange={this.onSearchChange}/>	
+					<SearchBox searchChange={this.onSearchChange} keyword='Search by Keyword'/>	
 					  <Link to="/" className="f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba br-pill mr2">
 					      <svg className="w1" data-icon="chevronLeft" viewBox="0 0 32 32" style={{fill:'currentcolor'}}>
 					        <title>chevronLeft icon</title>
@@ -47,6 +47,7 @@ class Headlines extends Component{
 					    <span className="pl1">Back</span>
 					  </Link>
 					 </div>
+					 
 				<section className="mw7 center">
 									
 					<h2 className="athelas ph2 ph0-l">News</h2>					
@@ -62,7 +63,7 @@ class Headlines extends Component{
 							        <p className="f5 f4-l lh-copy athelas">{item.description}</p>
 							      </div>
 							      <div className="pl3-ns order-1 order-2-ns mb4 mb0-ns w-100 w-40-ns">
-							        <img src={item.urlToImage} className="db dim" alt=''/>
+							        <img src={item.urlToImage} className="db dim" style={{height:200, width:'auto'}} alt=''/>
 							      </div>
 							     </div>
 							    <time className="f6 db gray">{item.publishedAt.substring(0,10)}</time>	

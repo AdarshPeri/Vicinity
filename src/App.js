@@ -2,14 +2,13 @@ import React, {Component} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Headlines from './components/Headlines';
-
 import Particles from 'react-particles-js';
 import './App.css';
 
 const particleOptions={
   particles: {
     number: {
-      value: 300,
+      value: 400,
       density: {
         enable: true,
         value_area: 800
