@@ -26,10 +26,11 @@ class Home extends Component {
     this.setState({ searchfield: event.target.value })
   }
 
-	render(){
-		 
+	render()
+	{ 
 		 const {sources, searchfield} = this.state;
-		 const filterSources = sources.filter(source =>{
+		 const filterSources = sources.filter(source =>
+		 {
      	 if(!searchfield){
      	 	return source
      	 }
@@ -37,14 +38,15 @@ class Home extends Component {
      	 return (
      	 	source.name.toLowerCase().includes(searchfield.toLowerCase()) 
      	 	);
-    	}})	
+    	}
+    	});	
 
 		return(
 			<div>
 			<div className="flex items-center justify-center pa2 mb1">
 			<SearchBox searchChange={this.onSearchChange} keyword='Search for Source'/>	
 			</div>	
-			  <ul className="list ph3 ph5-ns pv4">
+			  <ul className="list ph3 ph5-ns pv3">
 				{	
 				filterSources.map((item,i)=> { 
 				return (
@@ -61,7 +63,7 @@ class Home extends Component {
 				}
 			</ul>			
 			</div>
-			)
+			);
 	}
 }
 
