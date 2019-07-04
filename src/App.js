@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Headlines from './components/Headlines';
+
 import Particles from 'react-particles-js';
 import './App.css';
 
@@ -80,8 +81,10 @@ class App extends Component{
       <Particles className='particles'
               params={particleOptions}
             />
+      <Switch>
       <Route exact path='/' component={Home} />
       <Route exact path='/:id' component={Headlines} />
+      </Switch>
       </div>
       )
   }

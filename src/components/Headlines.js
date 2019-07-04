@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
+import SearchBox from './SearchBox';
 
 class Headlines extends Component{
 	constructor(props){
 		super(props);
 		this.state={
-			articles:[]
+			articles:[],
+			searchfield:''
 		}
 	}
 
@@ -14,9 +16,24 @@ class Headlines extends Component{
 		.then(response=> response.json())
 		.then(response=> this.setState({articles: response.articles}))
 	}
+
+	onSearchChange = (event) => {
+    this.setState({ searchfield: event.target.value })
+  }
 	
 	render(){
 		console.log(this.state.articles);
+		const {articles, searchfield} = this.state;
+		const filterHeadlines = articles.filter(article =>{
+     	 if(!searchfield){
+     	 	return article
+     	 }
+     	 else{
+     	 return (
+     	 	article.description.toLowerCase().includes(searchfield.toLowerCase()) 
+     	 	|| article.title.toLowerCase().includes(searchfield.toLowerCase())
+     	 	);
+    	}})
 		return(
 			<div>
 				<div className="flex items-center justify-end pa4">
@@ -29,10 +46,11 @@ class Headlines extends Component{
 					  </Link>
 					 </div>
 				<section className="mw7 center">
+					<SearchBox searchChange={this.onSearchChange}/>
 					<h2 className="athelas ph3 ph0-l">News</h2>
 					
 					{
-						this.state.articles.map((item,i)=>{return(
+						filterHeadlines.map((item,i)=>{return(
 							<article key={i} className="pv4 bt bb b--black-10 ph3 ph0-l pointer grow">
 							    <div className="flex flex-column flex-row-ns">
 							      <div className="w-100 w-60-ns pr3-ns order-2 order-1-ns">
@@ -42,8 +60,10 @@ class Headlines extends Component{
 							      <div className="pl3-ns order-1 order-2-ns mb4 mb0-ns w-100 w-40-ns">
 							        <img src={item.urlToImage} className="db dim" alt=''/>
 							      </div>
-							    </div>
-							    <p className="f6 lh-copy gray mv0">By <span className="ttu">{item.author}</span></p>
+							     </div>
+							    <time class="f6 db gray">{item.publishedAt.substring(0,10)}</time>	
+							   
+
 							 </article>
 							)})  						
   					}	
