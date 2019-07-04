@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import SearchBox from './SearchBox';
 
+
 class Headlines extends Component{
 	constructor(props){
 		super(props);
@@ -36,7 +37,8 @@ class Headlines extends Component{
     	}})
 		return(
 			<div>
-				<div className="flex items-center justify-end pa4">
+				<div className="flex items-center justify-end pa2">
+					<SearchBox searchChange={this.onSearchChange}/>	
 					  <Link to="/" className="f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba br-pill mr2">
 					      <svg className="w1" data-icon="chevronLeft" viewBox="0 0 32 32" style={{fill:'currentcolor'}}>
 					        <title>chevronLeft icon</title>
@@ -46,13 +48,15 @@ class Headlines extends Component{
 					  </Link>
 					 </div>
 				<section className="mw7 center">
-					<SearchBox searchChange={this.onSearchChange}/>
-					<h2 className="athelas ph3 ph0-l">News</h2>
+									
+					<h2 className="athelas ph2 ph0-l">News</h2>					
 					
 					{
-						filterHeadlines.map((item,i)=>{return(
-							<article key={i} className="pv4 bt bb b--black-10 ph3 ph0-l pointer grow">
-							    <div className="flex flex-column flex-row-ns">
+						filterHeadlines.map((item,i)=>
+						{
+							return(
+							<article key={i} className="pv4 bt bb mb3 b--black-10 ph3 ph0-l br3 pointer grow">
+							    <div className="flex flex-column flex-row-ns ma2">
 							      <div className="w-100 w-60-ns pr3-ns order-2 order-1-ns">
 							        <h1 className="f3 athelas mt0 lh-title">{item.title}</h1>
 							        <p className="f5 f4-l lh-copy athelas">{item.description}</p>
@@ -61,12 +65,12 @@ class Headlines extends Component{
 							        <img src={item.urlToImage} className="db dim" alt=''/>
 							      </div>
 							     </div>
-							    <time class="f6 db gray">{item.publishedAt.substring(0,10)}</time>	
-							   
-
+							    <time className="f6 db gray">{item.publishedAt.substring(0,10)}</time>	
 							 </article>
-							)})  						
-  					}	
+							)}
+							)  						
+  					}
+  						
 				</section>
 			</div>
 
